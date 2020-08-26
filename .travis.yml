@@ -6,8 +6,14 @@ install:
   - choco install visualstudio2019buildtools --package-parameters "--add Microsoft.VisualStudio.Component.VC.Tools.x86.x64"
   - choco install dotnetcore-sdk
   - choco install nodejs
+  - choco install 7zip.install
   - dotnet restore
 script:
+  - cd armorpaint  
+  - node armorcore/make -g direct3d11
+  - cd armorcore && 7z e 'v8\libraries\win32\release\v8_monolith.7z'
+  - git apply patch/window_handling.diff --directory=Kinc
+  - node Kinc/make -g direct3d11
   - export PATH=$MSBUILD_PATH:$PATH
   - MSBuild.exe -p:Configuration=Release -p:Platform=x64 CppProject/CppProject.vcxproj
   - dotnet build --configuration Release
