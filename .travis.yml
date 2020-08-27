@@ -7,7 +7,6 @@ install:
   - choco install dotnetcore-sdk
   - choco install nodejs
   - choco install 7zip.install
-  - dotnet restore
 script:
   - cd armorpaint  
   - node armorcore/make -g direct3d11
