@@ -13,7 +13,4 @@ script:
   - cd armorcore && 7z e 'v8\libraries\win32\release\v8_monolith.7z'
   - git apply patch/window_handling.diff --directory=Kinc
   - node Kinc/make -g direct3d11
-  - export PATH=$MSBUILD_PATH:$PATH
-  - MSBuild.exe -p:Configuration=Release -p:Platform=x64 CppProject/CppProject.vcxproj
-  - dotnet build --configuration Release
-  - dotnet test DotNetProject.Tests/bin/Release/netcoreapp3.1/DotNetProject.Tests.dll
+
